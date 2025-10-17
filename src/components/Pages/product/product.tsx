@@ -79,7 +79,7 @@ export default function Products() {
           <h2 className="text-2xl font-bold text-primary">Products ({filteredProducts.length})</h2>
           <button
             onClick={() => router.push('/products/create')}
-            className="bg-secondary text-white px-4 py-2 rounded-md hover:bg-green-600 flex items-center gap-2"
+            className="bg-primary text-white px-4 py-2 rounded-md hover:bg-green-600 flex items-center gap-2"
           >
             <Plus size={20} /> Add Product
           </button>
