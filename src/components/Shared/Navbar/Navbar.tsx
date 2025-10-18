@@ -5,6 +5,7 @@ import { RootState } from "../../../redux/store";
 import { clearToken } from "../../../redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
   const token = useSelector((state: RootState) => state.auth.token);
@@ -21,7 +22,7 @@ const Navbar = () => {
   return (
     <div className="bg-gray-300  shadow-sm p-4 ">
       <div className="w-full container flex justify-between items-center">
-        <h1 className="text-xl font-bold text-primary">Product Management</h1>
+        <Link href='/products'><h1 className="text-xl font-bold text-primary">Product Management</h1></Link>
         <button
           onClick={handleLogout}
           className="text-red-500 hover:text-red-700 flex items-center gap-1"

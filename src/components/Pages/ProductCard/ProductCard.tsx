@@ -27,12 +27,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           product.images?.[0]
             ? product.images[0].startsWith("http")
               ? product.images[0]
-              : "/" + product.images[0] // prepend slash if relative path
-            : "/placeholder.png" // fallback image
+              : "/" + product.images[0]  
+            : "/placeholder.png" 
         }
         alt={product.name}
-        width={200}
+        width={400}
         height={200}
+        className="w-[400] h-[200]"
       />
 
       {/* Content */}

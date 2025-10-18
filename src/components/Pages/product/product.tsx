@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { Category } from '@/types/types';
 import ProductCard from '../ProductCard/ProductCard';
+import Spinner from '@/components/ui/Spinner';
 
 interface SearchForm {
   search: string;
@@ -88,7 +89,7 @@ export default function Products() {
   if (!mounted || !token)
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Loading...
+        <Spinner/>
       </div>
     );
 
@@ -146,7 +147,7 @@ export default function Products() {
         </form>
 
         {/* Loading / Empty */}
-        {loading && <div className="text-center py-4">Loading...</div>}
+        {loading && <div className="text-center py-4">Loading... <Spinner/></div>}
         {!loading && paginatedProducts.length === 0 && (
           <div className="text-center py-4 text-gray-500">
             No products found.

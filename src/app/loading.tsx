@@ -1,7 +1,8 @@
+import Spinner from "@/components/ui/Spinner";
 import React from "react";
 
 const Loading = () => {
-  return <div>This is Loading Page</div>;
+  return <div><Spinner/></div>;
 };
 
 export default Loading;
