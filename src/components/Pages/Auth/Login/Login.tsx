@@ -24,6 +24,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: { email: 'aminuhoque53@gmail.com' },
   });
 
   const onSubmit = async (data: FormData) => {

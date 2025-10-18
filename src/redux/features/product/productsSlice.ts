@@ -12,7 +12,7 @@ interface ProductsState {
   filterCategoryId: string | null;
   loading: boolean;
   error: string | null;
-  selectedProduct?: Product | null; // For details/edit
+  selectedProduct?: Product | null;  
 }
 
 const initialState: ProductsState = {
