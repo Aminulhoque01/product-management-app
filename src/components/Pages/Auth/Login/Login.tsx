@@ -26,7 +26,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Ensure component only renders on client
+   
   useEffect(() => {
     setMounted(true);
   }, []);
