@@ -1,55 +1,72 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-'use client';
-import Image from 'next/image';
-import { Product } from '@/types/types';
-import { Edit3, Trash2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../../redux/store';
-import { deleteProduct } from '../../../redux/features/product/productsSlice';
-import toast from 'react-hot-toast';
+"use client";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { Trash } from "lucide-react";
+import Image from "next/image";
 
-interface Props {
-  product: Product;
+interface ProductCardProps {
+  product: {
+    id: string;
+    name: string;
+    price?: number;
+    slug: string;
+    images?: string[] | null;
+    category?: { id: string; name: string } | null;
+    description?: string;
+  };
 }
 
-export default function ProductCard({ product }: Props) {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
-  const token = useSelector((state: RootState) => state.auth.token);
-
-  const handleDelete = async () => {
-    if (!confirm('Are you sure? (Simulated delete)')) return;
-    try {
-      await dispatch(deleteProduct(product.id));
-      toast.success('Product deleted');
-    } catch (error) {
-      toast.error('Failed to delete');
-    }
-  };
-
-  const imageSrc = product.images[0] || '/placeholder.jpg'; // Add placeholder in public/
-
+  // const imageSrc = product.images?.[0] || "/placeholder.jpg";
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-      <Image src={imageSrc} alt={product.name} width={200} height={150} className="w-full h-32 object-cover rounded mb-2" />
-      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-      <p className="text-accent mb-1">${product.price}</p>
-      <p className="text-gray-600 mb-4">{product.category.name}</p>
-      <div className="flex justify-end space-x-2">
+    <div className="bg-white shadow-md rounded-xl overflow-hidden flex flex-col transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg">
+      {/* Product Image */}
+      <Image
+        src={
+          product.images?.[0]
+            ? product.images[0].startsWith("http")
+              ? product.images[0]
+              : "/" + product.images[0] // prepend slash if relative path
+            : "/placeholder.png" // fallback image
+        }
+        alt={product.name}
+        width={200}
+        height={200}
+      />
+
+      {/* Content */}
+      <div className="p-4 flex-1 flex flex-col">
+        <h3 className="text-lg font-semibold mb-1 truncate">{product.name}</h3>
+        <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+          {product.description || "No description available."}
+        </p>
+        <p className="text-gray-500 text-sm mb-1">
+          Category: {product.category?.name || "Uncategorized"}
+        </p>
+        <p className="text-primary font-semibold mt-auto text-base sm:text-lg">
+          ${product.price?.toFixed(2) || "0.00"}
+        </p>
+      </div>
+
+      {/* Actions */}
+      <div className="flex justify-between items-center p-3 border-t text-sm sm:text-base">
         <button
-          onClick={() => router.push(`/products/${product.slug}`)}
+          onClick={() => router.push(`/products/${product.slug || product.id}`)}
           className="text-primary hover:text-blue-600"
           title="View Details"
         >
-          <Edit3 size={20} />
+          View Details
         </button>
-        {token && (
-          <button onClick={handleDelete} className="text-red-500 hover:text-red-700" title="Delete">
-            <Trash2 size={20} />
-          </button>
-        )}
+        <button
+          onClick={() => alert("Delete logic here")}
+          className="text-red-600 hover:text-red-800 flex items-center gap-1"
+        >
+          <Trash size={18} /> Delete
+        </button>
       </div>
     </div>
   );
-}
+};
+
+export default ProductCard;

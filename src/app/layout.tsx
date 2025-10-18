@@ -2,9 +2,10 @@ import { Metadata } from "next";
  
 import "./globals.css";
 import Providers from "@/lib/Provider";
-import { Toaster } from "sonner";
+ 
 import { Roboto_Mono } from "next/font/google";
 import { ConfigProvider } from "antd";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: " product-managemant",
@@ -34,9 +35,10 @@ export default function RootLayout({
           }}
         >
           <Providers>
-            <Toaster richColors position="top-center" />
+            <Toaster  position="top-center" />
 
             {children}
+             
           </Providers>
         </ConfigProvider>
       </body>
