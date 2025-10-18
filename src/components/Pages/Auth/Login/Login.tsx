@@ -46,7 +46,9 @@ export default function Login() {
       dispatch(setToken(response.data.token));
       toast.success('Logged in successfully');
       router.push('/products');
-    } catch (error: any) {
+     
+    } catch (error:any) {
+       
       toast.error(error.response?.data?.message || error.message || 'Login failed');
     } finally {
       setLoading(false);
