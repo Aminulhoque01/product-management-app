@@ -67,7 +67,7 @@ export default function Login() {
             className="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-600 disabled:opacity-50 flex items-center justify-center gap-2"
           >
             <LogIn size={20} />
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Logging in... ' : 'Login'}
           </button>
         </form>
       </div>

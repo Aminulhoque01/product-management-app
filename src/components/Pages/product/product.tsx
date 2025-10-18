@@ -6,7 +6,7 @@ import { fetchProducts, setCurrentPage, setFilterCategoryId, setSearchTerm } fro
 import { fetchCategories } from '../../../redux/features/categories/categoriesSlice';
  
  
-import { Search, Plus, Filter } from 'lucide-react';
+import { Search, Plus, Filter, } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
@@ -69,7 +69,7 @@ export default function Products() {
 
   const onSearch = () => {}; // Handled by watch
 
-  if (!token) return <div>Loading...</div>;
+  if (!token) return   <div>Loading...   </div>;
 
   return (
     <div className="min-h-screen bg-neutral">

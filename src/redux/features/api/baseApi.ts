@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `https://api.bitechx.com/products`,
+  baseUrl: `https://api.bitechx.com`,
   prepareHeaders: (headers) => {
     const token = Cookies.get("token");
 

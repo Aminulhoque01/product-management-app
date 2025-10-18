@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 import { DollarSign, FileText, Image as ImageIcon } from 'lucide-react';
 import { Category } from '@/types/types';
 import { AppDispatch } from '@/redux/store';
-import { Toaster } from 'sonner';
+ 
 
 interface Props {
   categories: Category[];
